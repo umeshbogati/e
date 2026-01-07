@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{%  block content %}
+
+<h1>Events</h1>
+{% for event in events %}
+<h3>{{ event .title }}</h3>
+<p>{{ event.description }}</p>
+<p>{{ event.date }}</p>
+
+{% if user.is_authenticated %}
+<a href=" url 'register_event' event.id %}">Register</a>
+{% endif %}
+<hr>
+{% endfor %}
+{% endblock %}
+
+
