@@ -4,11 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Event, Registration
 from .forms import EventForm
-
+from django.http import HttpResponse
 # Create your views here.
 def home(request):
     events = Event.objects.all()
-    return render(request, 'events/home.html', {'events': events})
+    return HttpResponse("Welcome to Event Management System")
 
 @login_required
 def create_event(request):
@@ -19,9 +19,9 @@ def create_event(request):
             event.created_by = request.user
             event.save()
             return redirect('home')
-        else:
+    else:
             form = EventForm()
-        return render(request, 'events/create_events.html', {'form': form})
+    return render(request, 'events/create_events.html', {'form':form})
 
 @login_required
 def register_event(request, event_id):
